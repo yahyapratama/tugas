@@ -1,0 +1,163 @@
+#include <iostream>
+#include <conio.h>
+#include <string>
+
+using namespace std;
+
+struct mahasiswa
+{
+    string nama;
+    string kelamin;
+    string jurusan;
+    int nim;
+    double nilai1,nilai2,nilai3,rata,jumlah;
+};
+void bubble(int *arrBilangan, int juml){
+
+	int tampung;
+	for(int x = 0; x < juml;x++){
+		for(int i = 0; i < juml-1;i++){
+			if(arrBilangan[i] > arrBilangan[i+1]){
+				tampung = arrBilangan[i];
+				arrBilangan[i] = arrBilangan[i+1];
+				arrBilangan[i+1] = tampung;
+			}
+		}
+	}
+
+}
+
+
+void binary(int arrBilangan[],int max,int cari){
+	int tengah = 0;
+	int awal = 0;
+	int akhir = max;
+	bool ketemu = false;
+
+	while(awal <= akhir && !ketemu){
+		tengah = (awal + akhir)/2;
+		if(arrBilangan[tengah] == cari){
+			ketemu = true;
+			break;
+		}else{
+			if(arrBilangan[tengah] < cari){
+				awal = tengah+1;
+			}else{
+				akhir = tengah-1;
+			}
+		}
+	}
+
+	if(ketemu){
+		cout<<"Data Ditemukan Dinomor Indek Ke-"<<tengah<<endl;
+	}else{
+		cout<<"Data tidak Ditemukan"<<endl;
+	}
+
+
+	for (int i = 0; i < max; ++i)
+	{
+		cout<<arrBilangan[i]<<" ";
+	}
+}
+
+
+
+void isi()
+{
+    mahasiswa mhs[5];
+    int i;
+    for (i=0;i<5;i++)
+    {
+        cout<<"Masukkan NIM             : ";
+        cin>>mhs[i].nim;
+        cout<<"Masukkan Nama            : ";
+        cin>>mhs[i].nama;
+        cout<<"Masukkan Jenis Kelamin   : ";
+        cin>>mhs[i].kelamin;
+        cout<<"Masukkan Jurusan         : ";
+        cin>>mhs[i].jurusan;
+        cout<<"Masukkan Nilai 1         : ";
+        cin>>mhs[i].nilai1;
+        cout<<"Masukkan Nilai 2         : ";
+        cin>>mhs[i].nilai2;
+        cout<<"Masukkan Nilai 3         : ";
+        cin>>mhs[i].nilai3;
+
+    }
+
+    for (i=0;i<5;i++)
+	{
+        mhs[i].jumlah=mhs[i].nilai1+mhs[i].nilai2+mhs[i].nilai3;
+	    mhs[i].rata=mhs[i].jumlah/3;
+		cout<<"NIM\t: "<<mhs[i].nim<<endl;
+
+		cout<<"Nama\t: "<<mhs[i].nama<<endl;
+
+		cout<<"nilai 1\t: "<<mhs[i].nilai1<<endl;
+
+		cout<<"nilai 2\t: "<<mhs[i].nilai2<<endl;
+
+		cout<<"nilai 3\t: "<<mhs[i].nilai3<<endl;
+
+		cout<<"rata-rata 1\t: "<<mhs[i].rata<<endl;
+
+		cout<<"..................................."<<endl;
+
+
+
+}
+};
+void cari()
+{
+    int cari;
+
+    cout<<endl;
+	cout<<"Masukkan Nilai Yang Di Cari : ";
+	cin>>cari;
+
+
+}
+void data()
+{
+     mahasiswa mhs[1];
+    int i;
+    for (i=0;i<1;i++)
+    {
+        cout<<"NIM\t: "<<mhs[i].nim<<endl;
+
+		cout<<"Nama\t: "<<mhs[i].nama<<endl;
+
+		cout<<"nilai 1\t: "<<mhs[i].nilai1<<endl;
+
+		cout<<"nilai 2\t: "<<mhs[i].nilai2<<endl;
+
+		cout<<"nilai 3\t: "<<mhs[i].nilai3<<endl;
+
+		cout<<"..................................."<<endl;
+    }
+
+}
+
+
+int main()
+{
+    menu:
+    int pilih;
+    cout<<"1. input data mahasiswa"<<endl;
+    cout<<"2. daftar mahasiswa"<<endl;
+    cout<<"3. cari nim mahasiswa"<<endl;
+    cout<<"0. Keluar"<<endl;
+    cout<<"Pilih : ";
+    cin>>pilih;
+    switch (pilih)
+    {
+        case 1: isi();goto menu;break;
+        case 2: data();goto menu;break;
+        case 3: cari();goto menu;break;
+    }
+    getch();
+
+}
+
+
